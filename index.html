@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ghar Ka Ladoo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-bg: #fbf5e9;
+        --dark-brown: #26180f;
+        --accent-orange: #9f451d;
+        --accent-gold: #f0bd5e;
+        --text-muted: #705945;
+        --border-light: rgba(125, 92, 61, 0.25);
+      }
+
+      body {
+        font-family: 'DM Sans', sans-serif;
+        background-color: var(--primary-bg);
+        color: var(--dark-brown);
+        line-height: 1.6;
+      }
+
+      .font-serif {
+        font-family: 'Playfair Display', Georgia, serif;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 2rem;
+        color: white;
+      }
+
+      .brand-mark {
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .nav-links a, .nav-links button {
+        color: white;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        padding: 0;
+      }
+
+      .nav-links a::after, .nav-links button::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .nav-links a:hover::after, .nav-links button:hover::after {
+        transform: scaleX(1);
+      }
+
+      .nav-links .order-btn {
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        padding: 0.6rem 1.25rem;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links .order-btn:hover {
+        background: white;
+        color: var(--dark-brown);
+      }
+
+      .nav-links .order-btn::after {
+        display: none;
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        min-height: 96vh;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+      }
+
+      .hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        animation: heroZoom 12s ease-out;
+      }
+
+      @keyframes heroZoom {
+        from { transform: scale(1.06); }
+        to { transform: scale(1); }
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(30,16,8,.22) 10%, rgba(30,16,8,.82) 100%);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        padding: 0 2rem 3rem;
+        color: white;
+        animation: revealUp 0.85s ease-out;
+      }
+
+      @keyframes revealUp {
+        from { opacity: 0; transform: translateY(28px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .hero-tagline {
+        margin-bottom: 1rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.34em;
+        text-transform: uppercase;
+        color: #f4cf8b;
+      }
+
+      .hero-title {
+        font-size: clamp(4rem, 10vw, 9.5rem);
+        line-height: 0.78;
+        letter-spacing: -0.055em;
+        margin-bottom: 2rem;
+      }
+
+      .hero-title .italic {
+        font-style: italic;
+        color: #f2c56f;
+      }
+
+      .hero-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.35);
+      }
+
+      .hero-bottom p {
+        max-width: 28rem;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 1rem;
+      }
+
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        background: var(--accent-gold);
+        color: #321d10;
+        padding: 1rem 1.75rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.3s ease;
+      }
+
+      .hero-cta:hover {
+        background: #ffcf76;
+      }
+
+      /* Ladoo Menu Section */
+      .ladoo-section {
+        padding: 6rem 2rem;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 2rem;
+        margin-bottom: 4rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .section-tag {
+        margin-bottom: 1rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--accent-orange);
+      }
+
+      .section-title {
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+
+      .section-desc {
+        max-width: 24rem;
+        color: var(--text-muted);
+      }
+
+      /* Ladoo Cards */
+      .ladoo-grid {
+        display: grid;
+        gap: 4rem;
+      }
+
+      .ladoo-card {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 4rem;
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .ladoo-card:nth-child(even) {
+        direction: rtl;
+      }
+
+      .ladoo-card:nth-child(even) > * {
+        direction: ltr;
+      }
+
+      .ladoo-image-wrap {
+        position: relative;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        background: #ead9bb;
+      }
+
+      .ladoo-image-wrap::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        box-shadow: inset 0 0 0 1px rgba(38, 24, 15, 0.08);
+        pointer-events: none;
+      }
+
+      .ladoo-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s ease;
+      }
+
+      .ladoo-image-wrap:hover .ladoo-image {
+        transform: scale(1.035);
+      }
+
+      .ladoo-number {
+        position: absolute;
+        left: 1.25rem;
+        top: 1.25rem;
+        font-size: 1.875rem;
+        font-style: italic;
+        color: white;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .ladoo-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .ladoo-subtitle {
+        margin-bottom: 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--accent-orange);
+      }
+
+      .ladoo-name {
+        font-size: clamp(3rem, 5vw, 3.75rem);
+        line-height: 1;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.5rem;
+      }
+
+      .ladoo-description {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+      }
+
+      .ladoo-ingredients {
+        font-size: 0.875rem;
+        margin-bottom: 2rem;
+      }
+
+      .ladoo-ingredients strong {
+        font-weight: 600;
+      }
+
+      .buy-button {
+        display: inline-block;
+        background: var(--accent-orange);
+        color: white;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.875rem;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 8px 24px rgba(99, 42, 15, 0.16);
+        transition: background 0.3s ease;
+      }
+
+      .buy-button:hover {
+        background: #753013;
+      }
+
+      /* Story Section */
+      .story-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: #532d19;
+        color: white;
+      }
+
+      .story-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 5rem 3rem;
+      }
+
+      .story-tag {
+        margin-bottom: 1.25rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #efbd63;
+      }
+
+      .story-title {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        line-height: 1.02;
+        margin-bottom: 2rem;
+      }
+
+      .story-title .italic {
+        font-style: italic;
+        color: #efbd63;
+      }
+
+      .story-text {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 2.25rem;
+      }
+
+      .story-link {
+        display: inline-block;
+        color: #efbd63;
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 1px solid #efbd63;
+        padding-bottom: 0.5rem;
+      }
+
+      .story-image {
+        width: 100%;
+        height: 100%;
+        min-height: 30rem;
+        object-fit: cover;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark-brown);
+        color: rgba(255, 255, 255, 0.65);
+        padding: 3rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 2rem;
+      }
+
+      .footer-brand {
+        font-size: 1.875rem;
+        color: white;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-text {
+        font-size: 0.875rem;
+      }
+
+      .footer-contact {
+        text-align: right;
+      }
+
+      .footer-phone {
+        display: block;
+        color: #efbd63;
+        font-size: 1.125rem;
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Edit Panel */
+      .edit-panel {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(28, 16, 9, 0.7);
+        backdrop-filter: blur(4px);
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+
+      .edit-panel.active {
+        display: flex;
+      }
+
+      .edit-container {
+        background: #fffaf0;
+        max-width: 56rem;
+        width: 100%;
+        max-height: 94vh;
+        overflow-y: auto;
+        padding: 2rem;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+      }
+
+      .edit-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1.25rem;
+        padding-bottom: 1.25rem;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .edit-tag {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--accent-orange);
+        margin-bottom: 0.5rem;
+      }
+
+      .edit-title {
+        font-size: 2.25rem;
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+      }
+
+      .ladoo-tabs {
+        display: flex;
+        gap: 0.5rem;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+      }
+
+      .tab-btn {
+        flex-shrink: 0;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        background: none;
+        border: 1px solid rgba(139, 108, 81, 0.3);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .tab-btn.active {
+        background: var(--accent-orange);
+        color: white;
+        border-color: var(--accent-orange);
+      }
+
+      .edit-grid {
+        display: grid;
+        grid-template-columns: 17.5rem 1fr;
+        gap: 1.75rem;
+      }
+
+      .image-upload-wrap {
+        aspect-ratio: 1;
+        overflow: hidden;
+        background: #ead9bb;
+      }
+
+      .image-upload-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .upload-btn {
+        display: block;
+        margin-top: 0.75rem;
+        background: var(--dark-brown);
+        color: white;
+        padding: 0.75rem 1rem;
+        text-align: center;
+        font-size: 0.875rem;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+      }
+
+      .upload-note {
+        margin-top: 0.5rem;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      .edit-fields {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .field-label {
+        display: grid;
+        gap: 0.45rem;
+        color: #795d45;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .field-label input,
+      .field-label textarea {
+        width: 100%;
+        border: 1px solid rgba(125, 92, 61, 0.3);
+        background: white;
+        padding: 0.75rem 0.85rem;
+        color: var(--dark-brown);
+        font-size: 0.95rem;
+        font-family: inherit;
+      }
+
+      .field-label input:focus,
+      .field-label textarea:focus {
+        outline: none;
+        border-color: var(--accent-orange);
+        box-shadow: 0 0 0 2px rgba(159, 69, 29, 0.12);
+      }
+
+      .edit-footer {
+        margin-top: 2rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--border-light);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .reset-btn {
+        background: none;
+        border: none;
+        color: #8a3f1e;
+        font-size: 0.875rem;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .save-btn {
+        background: var(--accent-orange);
+        color: white;
+        padding: 0.75rem 1.75rem;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .section-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .ladoo-card {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .ladoo-card:nth-child(even) {
+          direction: ltr;
+        }
+
+        .story-section {
+          grid-template-columns: 1fr;
+        }
+
+        .story-image {
+          min-height: 20rem;
+        }
+
+        footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .footer-contact {
+          text-align: left;
+        }
+
+        .edit-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      #root {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <a href="#top" class="brand-mark">Ghar Ka Ladoo</a>
+      <div class="nav-links">
+        <a href="#ladoo-menu">Our ladoos</a>
+        <a href="#story">Our promise</a>
+        <button id="editBtn">Edit menu</button>
+        <a href="https://wa.me/918424816601" target="_blank" rel="noreferrer" class="order-btn">Order on WhatsApp</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="top" class="hero">
+      <img class="hero-image" src="https://images.pexels.com/photos/19151502/pexels-photo-19151502.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=2000&h=1400" alt="A festive box of handmade Indian ladoos" />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-tagline">Handmade with pure ghee</p>
+        <h1 class="font-serif hero-title">Ghar Ka<br /><span class="italic">Ladoo</span></h1>
+        <div class="hero-bottom">
+          <p>Traditional recipes, honest ingredients and the warmth of home in every bite.</p>
+          <a href="#ladoo-menu" class="hero-cta">Taste the tradition <span>→</span></a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Ladoo Menu Section -->
+    <section id="ladoo-menu" class="ladoo-section">
+      <div class="section-header">
+        <div>
+          <p class="section-tag">Our signature trio</p>
+          <h2 class="font-serif section-title">A ladoo for every craving.</h2>
+        </div>
+        <p class="section-desc">Small-batch sweets prepared fresh with recipes passed down through generations.</p>
+      </div>
+
+      <div class="ladoo-grid">
+        <!-- Besan Ladoo -->
+        <article class="ladoo-card" data-ladoo-id="besan">
+          <div class="ladoo-image-wrap">
+            <img class="ladoo-image" id="img-besan" src="1.png" alt="Besan Ladoo" />
+            <span class="font-serif ladoo-number">01</span>
+          </div>
+          <div class="ladoo-content">
+            <p class="ladoo-subtitle" id="sub-besan">The golden classic</p>
+            <h3 class="font-serif ladoo-name" id="name-besan">Besan Ladoo</h3>
+            <p class="ladoo-description" id="desc-besan">Slow-roasted gram flour folded with pure ghee, sugar and a gentle touch of cardamom. Soft, fragrant and made just like home.</p>
+            <p class="ladoo-ingredients"><strong>Made with:</strong> <span id="ing-besan">Besan, pure ghee, sugar, cardamom & almonds</span></p>
+            <a href="https://wa.me/918424816601?text=Namaste!%20I%20would%20like%20to%20order%20Besan%20Ladoo.%20Please%20share%20availability%20and%20delivery%20details." target="_blank" rel="noreferrer" class="buy-button">Buy now on WhatsApp</a>
+          </div>
+        </article>
+
+        <!-- Methi Ladoo -->
+        <article class="ladoo-card" data-ladoo-id="methi">
+          <div class="ladoo-image-wrap">
+            <img class="ladoo-image" id="img-methi" src="2.png" alt="Methi Ladoo" />
+            <span class="font-serif ladoo-number">02</span>
+          </div>
+          <div class="ladoo-content">
+            <p class="ladoo-subtitle" id="sub-methi">Warm & nourishing</p>
+            <h3 class="font-serif ladoo-name" id="name-methi">Methi Ladoo</h3>
+            <p class="ladoo-description" id="desc-methi">A wholesome winter recipe with aromatic methi, nuts and warming spices. Balanced sweetness with a rich, satisfying bite.</p>
+            <p class="ladoo-ingredients"><strong>Made with:</strong> <span id="ing-methi">Methi, wheat flour, ghee, jaggery, dry fruits & spices</span></p>
+            <a href="https://wa.me/918424816601?text=Namaste!%20I%20would%20like%20to%20order%20Methi%20Ladoo.%20Please%20share%20availability%20and%20delivery%20details." target="_blank" rel="noreferrer" class="buy-button">Buy now on WhatsApp</a>
+          </div>
+        </article>
+
+        <!-- Gond Ladoo -->
+        <article class="ladoo-card" data-ladoo-id="gond">
+          <div class="ladoo-image-wrap">
+            <img class="ladoo-image" id="img-gond" src="3.png" alt="Gond Ladoo" />
+            <span class="font-serif ladoo-number">03</span>
+          </div>
+          <div class="ladoo-content">
+            <p class="ladoo-subtitle" id="sub-gond">Rich in every bite</p>
+            <h3 class="font-serif ladoo-name" id="name-gond">Gond Ladoo</h3>
+            <p class="ladoo-description" id="desc-gond">Crisp edible gum, roasted flour and generous dry fruits come together in this traditional, energy-rich family favourite.</p>
+            <p class="ladoo-ingredients"><strong>Made with:</strong> <span id="ing-gond">Edible gond, wheat flour, ghee, jaggery & mixed nuts</span></p>
+            <a href="https://wa.me/918424816601?text=Namaste!%20I%20would%20like%20to%20order%20Gond%20Ladoo.%20Please%20share%20availability%20and%20delivery%20details." target="_blank" rel="noreferrer" class="buy-button">Buy now on WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Story Section -->
+    <section id="story" class="story-section">
+      <div class="story-content">
+        <p class="story-tag">From our kitchen</p>
+        <h2 class="font-serif story-title">Made slowly.<br /><span class="italic">Shared gladly.</span></h2>
+        <p class="story-text">No shortcuts, no factory batches. We roast, roll and pack every order with care so it reaches you fresh and full of flavour.</p>
+        <a href="https://wa.me/918424816601" target="_blank" rel="noreferrer" class="story-link">Chat with us at +91 84248 16601</a>
+      </div>
+      <img class="story-image" src="https://images.pexels.com/photos/8818668/pexels-photo-8818668.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=1200" alt="Traditional sweets served during a celebration" />
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>
+        <p class="font-serif footer-brand">Ghar Ka Ladoo</p>
+        <p class="footer-text">Freshly handmade. Thoughtfully packed.</p>
+      </div>
+      <div class="footer-contact">
+        <a href="https://wa.me/918424816601" target="_blank" rel="noreferrer" class="footer-phone">+91 84248 16601</a>
+        <p class="footer-text">Orders accepted on WhatsApp</p>
+      </div>
+    </footer>
+
+    <!-- Edit Panel -->
+    <div id="editPanel" class="edit-panel">
+      <div class="edit-container">
+        <div class="edit-header">
+          <div>
+            <p class="edit-tag">Owner tools</p>
+            <h2 class="font-serif edit-title">Edit your menu</h2>
+          </div>
+          <button id="closeEdit" class="close-btn">×</button>
+        </div>
+
+        <div class="ladoo-tabs">
+          <button class="tab-btn active" data-tab="besan">Besan Ladoo</button>
+          <button class="tab-btn" data-tab="methi">Methi Ladoo</button>
+          <button class="tab-btn" data-tab="gond">Gond Ladoo</button>
+        </div>
+
+        <div class="edit-grid">
+          <div>
+            <div class="image-upload-wrap">
+              <img id="editImg" src="" alt="Current upload preview" />
+            </div>
+            <label class="upload-btn">
+              Add / change photo
+              <input type="file" id="fileInput" accept="image/*" style="display: none;" />
+            </label>
+            <p class="upload-note">Photos are resized and saved in this browser.</p>
+          </div>
+
+          <div class="edit-fields">
+            <label class="field-label">
+              Name
+              <input type="text" id="editName" />
+            </label>
+            <label class="field-label">
+              Short label
+              <input type="text" id="editSub" />
+            </label>
+            <label class="field-label">
+              Description
+              <textarea id="editDesc" rows="4"></textarea>
+            </label>
+            <label class="field-label">
+              Ingredients
+              <input type="text" id="editIng" />
+            </label>
+          </div>
+        </div>
+
+        <div class="edit-footer">
+          <button id="resetBtn" class="reset-btn">Reset menu</button>
+          <button id="saveBtn" class="save-btn">Save & view menu</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initial data
+      const defaultData = {
+        besan: {
+          name: 'Besan Ladoo',
+          sub: 'The golden classic',
+          desc: 'Slow-roasted gram flour folded with pure ghee, sugar and a gentle touch of cardamom. Soft, fragrant and made just like home.',
+          ing: 'Besan, pure ghee, sugar, cardamom & almonds',
+          img: '1.png'
+        },
+        methi: {
+          name: 'Methi Ladoo',
+          sub: 'Warm & nourishing',
+          desc: 'A wholesome winter recipe with aromatic methi, nuts and warming spices. Balanced sweetness with a rich, satisfying bite.',
+          ing: 'Methi, wheat flour, ghee, jaggery, dry fruits & spices',
+          img: '2.png'
+        },
+        gond: {
+          name: 'Gond Ladoo',
+          sub: 'Rich in every bite',
+          desc: 'Crisp edible gum, roasted flour and generous dry fruits come together in this traditional, energy-rich family favourite.',
+          ing: 'Edible gond, wheat flour, ghee, jaggery & mixed nuts',
+          img: '3.png'
+        }
+      };
+
+      // Load saved data
+      let data = JSON.parse(localStorage.getItem('ladoo-data')) || JSON.parse(JSON.stringify(defaultData));
+      let currentTab = 'besan';
+
+      // Update display
+      function updateDisplay() {
+        ['besan', 'methi', 'gond'].forEach(id => {
+          document.getElementById(`name-${id}`).textContent = data[id].name;
+          document.getElementById(`sub-${id}`).textContent = data[id].sub;
+          document.getElementById(`desc-${id}`).textContent = data[id].desc;
+          document.getElementById(`ing-${id}`).textContent = data[id].ing;
+          document.getElementById(`img-${id}`).src = data[id].img;
+        });
+      }
+
+      // Open edit panel
+      document.getElementById('editBtn').addEventListener('click', () => {
+        document.getElementById('editPanel').classList.add('active');
+        loadTab(currentTab);
+      });
+
+      // Close edit panel
+      document.getElementById('closeEdit').addEventListener('click', () => {
+        document.getElementById('editPanel').classList.remove('active');
+      });
+
+      // Tab switching
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentTab = btn.dataset.tab;
+          loadTab(currentTab);
+        });
+      });
+
+      // Load tab data into form
+      function loadTab(id) {
+        document.getElementById('editName').value = data[id].name;
+        document.getElementById('editSub').value = data[id].sub;
+        document.getElementById('editDesc').value = data[id].desc;
+        document.getElementById('editIng').value = data[id].ing;
+        document.getElementById('editImg').src = data[id].img;
+      }
+
+      // Update data from form
+      function updateData() {
+        data[currentTab].name = document.getElementById('editName').value;
+        data[currentTab].sub = document.getElementById('editSub').value;
+        data[currentTab].desc = document.getElementById('editDesc').value;
+        data[currentTab].ing = document.getElementById('editIng').value;
+      }
+
+      // Auto-save on input
+      document.querySelectorAll('.edit-fields input, .edit-fields textarea').forEach(input => {
+        input.addEventListener('input', () => {
+          updateData();
+          localStorage.setItem('ladoo-data', JSON.stringify(data));
+          updateDisplay();
+        });
+      });
+
+      // Image upload
+      document.getElementById('fileInput').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const scale = Math.min(1, 1200 / Math.max(img.width, img.height));
+            canvas.width = img.width * scale;
+            canvas.height = img.height * scale;
+            canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+            data[currentTab].img = dataUrl;
+            localStorage.setItem('ladoo-data', JSON.stringify(data));
+            updateDisplay();
+            document.getElementById('editImg').src = dataUrl;
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+
+      // Save button
+      document.getElementById('saveBtn').addEventListener('click', () => {
+        document.getElementById('editPanel').classList.remove('active');
+      });
+
+      // Reset button
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        if (confirm('Reset all menu details and photos?')) {
+          data = JSON.parse(JSON.stringify(defaultData));
+          localStorage.removeItem('ladoo-data');
+          updateDisplay();
+          loadTab(currentTab);
+        }
+      });
+
+      // Initial display
+      updateDisplay();
+    </script>
+  </body>
+</html>
